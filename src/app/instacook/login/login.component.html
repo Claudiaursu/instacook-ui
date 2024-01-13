@@ -1,0 +1,13 @@
+<div class="sectiune-login">
+  <div class="sectiune-login">
+    <label for="username">Username: </label>
+  <input type="text" id="username" [(ngModel)]="username" />
+  </div>
+  <br />
+  <div class="sectiune-login">
+    <label for="password">Password: </label>
+    <input type="password" id="password" [(ngModel)]="password" />
+  </div>
+  <br />
+  <button mat-button (click)="login()" class="buton-login">Login</button>
+</div>

@@ -1,1 +1,43 @@
-<p>recipes works!</p>
+<div class="top-page-recipes">
+  <div>
+    <h2>
+      Nicio idee ca sa gatesti ? Ia-ti inspiratia de la prietanii tai!
+    </h2>
+  </div>
+  <div class="div-buton">
+    <button class="buton-new-recipe" mat-button routerLink="new">
+      Adauga reteta ta
+    </button>
+  </div>
+</div>
+<div class="content-wrapper">
+  <div class="content flex-row flex-wrap"
+  *ngIf="(recipes$ | async); let recipes">
+  <mat-card *ngFor="let recipe of recipes" style="position: relative;" class="content2">
+    
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title class="social-post-title">{{recipe.titluReteta}}</mat-card-title>
+      <mat-card-subtitle class="social-post-subtitle">Dificultate: {{recipe.dificultate}}</mat-card-subtitle>
+      <mat-card-subtitle class="social-post-subtitle">Colectie: {{recipe.colectie?.titluColectie}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+      Ingrediente: {{recipe.ingrediente}}
+      </p>
+
+      <p>
+      Instructiuni: {{recipe.instructiuni}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="buton-roz" mat-button>LIKE</button>
+      <button class="buton-roz" mat-button>SHARE</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>
+</div>
+

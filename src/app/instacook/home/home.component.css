@@ -1,0 +1,11 @@
+.buton-login {
+  background-color: rgb(151, 123, 158);
+  margin-bottom: 14px;
+}
+
+.hello-text {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: rgb(55, 35, 66);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

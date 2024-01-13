@@ -1,0 +1,113 @@
+<div class="top-page-recipes">
+  <div class="title">
+    <span *ngIf="(currentRecipe$ | async) == null; else editRecipe" class="uxg-h4" style ="margin:2% auto;">Adauga o noua reteta!</span>
+    <ng-template #editRecipe>
+      <span class="uxg-h4" style ="margin:2% auto;">Editeaza reteta</span>
+    </ng-template>
+  </div>
+  <div class="form">
+    <div class="content-body">
+      <form [formGroup]="newRecipeForm" (ngSubmit)="submitRecipe()" *ngIf="(currentRecipe$ | async) !== null; else addNewRecipeForm">
+        <br>
+        <div *ngIf="(currentRecipe$ | async); let recipe">
+          <div class="common-field">
+            <p><label class="statement">Titlu Reteta:</label></p>
+            <input type="text" class="input-topic" formControlName = "titluReteta" appearance="fill" [(ngModel)]="recipe.titluReteta">
+          </div>
+          <br><br>
+        <div class="common-field">
+          <p><label class="statement" for="w3review">Dificultate:</label></p>
+          <textarea class="input-description" formControlName = "dificultate" rows="4" cols="50" [(ngModel)]="recipe.dificultate"></textarea>
+        </div>
+        <div class="common-field">
+          <p><label class="statement" for="w3review">Ingrediente:</label></p>
+          <textarea class="input-description" formControlName = "ingrediente" rows="4" cols="50" [(ngModel)]="recipe.ingrediente"></textarea>
+        </div>
+        <div class="common-field">
+          <p><label class="statement" for="w3review">Instructiuni:</label></p>
+          <textarea class="input-description" formControlName = "instructiuni" rows="4" cols="50" [(ngModel)]="recipe.instructiuni"></textarea>
+        </div>
+        <div>
+          <label for="selectedOptions">Select Options:</label>
+          <!-- <select id="selectedOptions" formControlName = "colectie" [(ngModel)]="recipe.colectie" multiple>
+            <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+          </select> -->
+        </div>
+        <br><br>
+        <!-- <div class="common-field">
+          <p><label class="statement" for="w3review">Topic Owners:</label></p>
+          <div class="filter-users" *ngIf="(isLoading$ | async) === false && (users$ | async); let users">
+            <ng-multiselect-dropdown class="selected-users"
+            [placeholder]="'Add owners to topic'"
+            [settings]="dropdownSettings"
+            [data]="users"
+            [(ngModel)]="topic.owners"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            [ngModelOptions]="{standalone: true}">
+            </ng-multiselect-dropdown>
+          </div>
+        </div> -->
+        <br>
+        <!-- <div class="common-field" *ngIf="topic.topicImage !== ''">
+          <label class="statement" for="file">Actual topic photo:</label> <br>
+          <img class="topic-photo" src="{{topic.topicImage}}"/>
+        </div> -->
+        <!-- <div class="common-field">
+          <label class="statement" for="file">Photo:</label> <br>
+          <input type="file" class="file-upload" (change)="onFileChange($event)" name="file">
+        </div> -->
+        <br><br>
+        <div  class="common-field" >
+          <button class="submit" mat-flat-button color="primary">Submit</button>
+        </div>
+      </div>
+      </form>
+      <ng-template #addNewRecipeForm>
+        <form [formGroup]="newRecipeForm" (ngSubmit)="submitRecipe()">
+          <br>
+          <div class="common-field">
+            <p><label class="statement">Titlu Reteta:</label></p>
+            <input class="input-topic" formControlName = "titluReteta" appearance="fill">
+          </div>
+          <br><br>
+          <div class="common-field">
+            <p><label class="statement" for="w3review">Dificultate:</label></p>
+            <textarea class="input-description" formControlName = "dificultate" rows="4" cols="50">Type ... </textarea>
+          </div>
+          <div class="common-field">
+            <p><label class="statement" for="w3review">ingrediente:</label></p>
+            <textarea class="input-description" formControlName = "ingrediente" rows="4" cols="50">Type ... </textarea>
+          </div>
+          <div class="common-field">
+            <p><label class="statement" for="w3review">instructiuni:</label></p>
+            <textarea class="input-description" formControlName = "instructiuni" rows="4" cols="50">Type ... </textarea>
+          </div>
+          <br><br>
+          <!-- <div class="common-field">
+            <p><label class="statement" for="w3review">Topi:</label></p>
+            <div class="filter-users" *ngIf="(isLoading$ | async) === false && (users$ | async); let users">
+              <ng-multiselect-dropdown class="selected-users"
+                [placeholder]="'Add owners to topic'"
+                [settings]="dropdownSettings"
+                [data]="users"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div> -->
+          <br>
+          <!-- <div class="common-field">
+            <label class="statement" for="file">Photo:</label> <br>
+            <input type="file" class="file-upload" (change)="onFileChange($event)" name="file">
+          </div> -->
+          <br><br>
+          <div  class="common-field" >
+            <button class="submit" mat-flat-button color="primary">Submit</button>
+          </div>
+        </form>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
