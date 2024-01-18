@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RecipesService } from '../../services/api/recipes.service';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { RecipeDto } from '../dto/recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipes',
@@ -15,8 +16,7 @@ export class RecipesComponent {
 
   constructor(
     private recipesService: RecipesService,
-    // private loadingService: LoadingService,
-    // public header: HeaderService,
+    private router: Router
   ) { 
   }
 
@@ -25,7 +25,6 @@ export class RecipesComponent {
   }
 
   getAllRecipes(){
-    //this.loadingService.loading$.next(true);
     this.recipesService
       .getAllRecipes()
       .pipe(takeUntil(this.unsubscribe$))
@@ -34,9 +33,19 @@ export class RecipesComponent {
           this.recipes$.next(elements);
         },
         error: (error) => {
-          //this.isLoading$.next(false);
           console.log(error);
         },
       });
+  }
+
+  deleteRecipe(recipeId: number | undefined){
+    if (recipeId) {
+      this.recipesService.deleteRecipe(recipeId.toString()).subscribe((response: any) =>{
+        let currentUrl = this.router.url;
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+          this.router.navigate([currentUrl]);
+        });
+      })
+    }
   }
 }

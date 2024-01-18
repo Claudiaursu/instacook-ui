@@ -13,7 +13,10 @@ import { StoreModule } from '@ngrx/store';
 import * as fromInstacookReducer from '../instacook/store/instacook.reducer';
 import { InstacookEffects } from './store/instacook.effects';
 import { EffectsModule } from '@ngrx/effects';
-
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,11 @@ import { EffectsModule } from '@ngrx/effects';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
     FormsModule,
+    MatInputModule,
+    MatSelectModule,
     EffectsModule.forFeature([InstacookEffects]),
     StoreModule.forFeature(fromInstacookReducer.instacookFeatureKey, fromInstacookReducer.reducer)
 

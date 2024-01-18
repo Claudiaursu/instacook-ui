@@ -1,11 +1,13 @@
 <div class="top-page-recipes">
-  <div class="title">
-    <span *ngIf="(currentRecipe$ | async) == null; else editRecipe" class="uxg-h4" style ="margin:2% auto;">Adauga o noua reteta!</span>
-    <ng-template #editRecipe>
-      <span class="uxg-h4" style ="margin:2% auto;">Editeaza reteta</span>
-    </ng-template>
+  <div class="content">
+    <div class="title">
+      <span *ngIf="(currentRecipe$ | async) == null; else editRecipe" class="statement" style ="margin:2% auto;">Adauga o noua reteta!</span>
+      <ng-template #editRecipe>
+        <span class="statement" style ="margin:2% auto;">Editeaza reteta</span>
+      </ng-template>
+    </div>
   </div>
-  <div class="form">
+  <div class="form content">
     <div class="content-body">
       <form [formGroup]="newRecipeForm" (ngSubmit)="submitRecipe()" *ngIf="(currentRecipe$ | async) !== null; else addNewRecipeForm">
         <br>
@@ -76,14 +78,50 @@
             <textarea class="input-description" formControlName = "dificultate" rows="4" cols="50">Type ... </textarea>
           </div>
           <div class="common-field">
-            <p><label class="statement" for="w3review">ingrediente:</label></p>
+            <p><label class="statement" for="w3review">Ingrediente:</label></p>
             <textarea class="input-description" formControlName = "ingrediente" rows="4" cols="50">Type ... </textarea>
           </div>
           <div class="common-field">
-            <p><label class="statement" for="w3review">instructiuni:</label></p>
+            <p><label class="statement" for="w3review">Instructiuni:</label></p>
             <textarea class="input-description" formControlName = "instructiuni" rows="4" cols="50">Type ... </textarea>
           </div>
           <br><br>
+          <div>
+            <label for="selectedOptions">Alege colectia:</label>
+            <!-- <select id="selectedOptions" formControlName = "colectie" multiple>
+              <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+            </select> -->
+
+            <!-- <mat-form-field  *ngIf="(collections$ | async); let collections">
+              <select matNativeControl [(ngModel)]="selectedCollection2$">
+                <option value="" selected></option>
+                <option *ngFor="let collection of collections" [value]="collection">
+                  {{ collection.titluColectie }}
+                </option>
+              </select>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field *ngIf="(collections$ | async); let collections">
+              <mat-select [(ngModel)]="selectedCollection2$">
+                <mat-option value="" selected></mat-option>
+                <mat-option *ngFor="let collection of collections" [value]="collection">
+                  {{ collection.titluColectie }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field> -->
+
+
+            <div *ngIf="(collections$ | async); let collections">
+              <select formControlName="colectie">
+                <option value="" selected></option>
+                <option *ngFor="let collection of collections" [value]="collection.id">
+                  {{ collection.titluColectie }}
+                </option>
+              </select>
+            </div>
+            
+            
+          </div>
           <!-- <div class="common-field">
             <p><label class="statement" for="w3review">Topi:</label></p>
             <div class="filter-users" *ngIf="(isLoading$ | async) === false && (users$ | async); let users">
@@ -102,7 +140,7 @@
             <input type="file" class="file-upload" (change)="onFileChange($event)" name="file">
           </div> -->
           <br><br>
-          <div  class="common-field" >
+          <div style="margin:10px; align-items: center;">
             <button class="submit" mat-flat-button color="primary">Submit</button>
           </div>
         </form>

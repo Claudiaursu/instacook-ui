@@ -21,7 +21,7 @@ export class CollectionsService {
   }
 
   getCollectionsByUserId(userId: string): Observable<CollectionDto[]> {
-    return this.httpClient.get<CollectionDto[]>(`${this.api}/${userId}`);
+    return this.httpClient.get<CollectionDto[]>(`${this.api}/user/${userId}`);
   }
 
   createCollection(collection: CollectionDto) {
